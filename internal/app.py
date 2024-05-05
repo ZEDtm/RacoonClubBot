@@ -14,5 +14,3 @@ def main():
     users.create(new_user)
 
 main()
-
-
