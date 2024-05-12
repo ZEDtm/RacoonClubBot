@@ -1,18 +1,7 @@
 from models.user import User
 
-class UserRepository:
+class Repository:
     def __init__(self, db):
-        self.store = db.user_repository
-
-    def find(self, query):
-        return self.db.find(query)
-    
-    
-    def findById(self, query):
-        return self.db.findById(query)
-
-
-    def create(self, user: User):
-        return self.db.create(user)
-
-    
+        self.users = db.user_repository
+        self.events = db.events_repository
+        self.archives = db.archive_repository
