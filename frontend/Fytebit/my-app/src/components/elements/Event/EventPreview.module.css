@@ -1,0 +1,49 @@
+.block {
+  @apply relative pt-4 m-4;
+}
+
+.textContainer {
+  @apply flex-grow ml-2 pl-2 pr-2;
+}
+
+.name {
+  @apply text-center text-xl font-bold text-[--color-heading];
+}
+
+.image {
+  @apply m-0 p-2 w-max h-2/3 rounded-tl-3xl rounded-br-3xl;
+}
+
+.container1 {
+  @apply flex items-start pr-2 pl-2;
+}
+
+.container2 {
+  @apply flex-grow;
+}
+
+.container3 {
+  @apply flex space-x-4;
+}
+
+.svgTextContainer {
+  @apply flex items-center space-x-2;
+}
+
+.text {
+  @apply flex-none text-sm text-[--color-heading];
+}
+
+.svgIcon {
+  @apply w-4 h-4;
+}
+
+.description {
+  @apply p-4 text-wrap md:text-balance h-1/4;
+}
+
+.author {
+  @apply p-4 text-right h-1/4;
+}
+
+/*# sourceMappingURL=EventPreview.module.css.map */

@@ -1,0 +1,77 @@
+.toggle-menu {
+  height: 2rem;
+  background-color: transparent;
+  @apply mt-2 flex justify-between items-center;
+}
+
+.toggle-menu.show {
+  animation: toggle-menu-anim 0.5s ease-in-out forwards;
+}
+
+.toggle-menu.hide {
+  animation: hide-menu-anim 0.5s ease-in-out forwards;
+}
+
+@keyframes hide-menu-anim {
+  from {
+    height: 2rem;
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes toggle-menu-anim {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 2rem;
+    opacity: 1;
+  }
+}
+.stick {
+  height: 2px;
+  width: 5rem;
+  background-color: var(--color-heading);
+}
+
+.k2d-light {
+  font-family: 'K2D', sans-serif;
+  font-weight: 200;
+  color: var(--color-heading);
+}
+
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+.bar {
+  height: 2px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--color-heading);
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}

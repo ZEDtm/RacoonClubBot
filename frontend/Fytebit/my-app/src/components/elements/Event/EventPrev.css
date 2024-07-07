@@ -1,0 +1,25 @@
+.swipe-card {
+    touch-action: pan-y;
+}
+
+.event-prev-card {
+    @apply mb-2 p-2;
+    border-radius: 25px 0 25px 0;
+    /*background: rgba(65, 69, 71, 0.3);*/
+    background-color: var(--custom-div-back);
+    transition: transform 0.3s ease-in-out;
+    touch-action: pan-y;
+}
+
+.event-prev-card:hover {
+    background-color: var(--color-background-mute);
+}
+
+.event-prev-card.swiped.left{
+    transform: translateX(-30%); /* Adjust the value as needed */
+}
+
+.event-prev-card.swiped.right{
+    transform: translateX(30%); /* Adjust the value as needed */
+}
+
