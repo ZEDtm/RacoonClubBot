@@ -4,7 +4,6 @@ import Skeleton from '../../components/ui/Skeletons/Home/HomeSkeleton'
 import EventPrev from '../../components/elements/Event/EventPrev';
 
 import './TestHome.css'
-import Icon from "../../components/ui/Icons/Icons";
 import Icons from "../../components/ui/Icons/Icons";
 
 export default function Home() {
