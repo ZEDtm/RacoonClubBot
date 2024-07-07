@@ -4,12 +4,11 @@ import { AuthProvider, useAuth } from './auth/AuthContext';
 import TelegramAuth from './auth/TelegramAuth'
 import { ButtonTelegramAuth } from './auth/TelegramAuthSec'
 import Loader from './components/ui/Loader/Loader'
-
 import Header from './components/elements/Header/Header';
 import Home from './views/Events/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import TestHome from './views/Events/TestHome'
-import EventDetail from "./views/EditEvent/EventDetail";
+// import EventDetail from "./views/EditEvent/EventDetail";
 import EditPage from './components/pages/EditPage/EditForm'
 
 
