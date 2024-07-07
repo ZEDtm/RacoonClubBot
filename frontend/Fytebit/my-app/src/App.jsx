@@ -10,6 +10,7 @@ import Home from './views/Events/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import TestHome from './views/Events/TestHome'
 import EventDetail from "./views/EditEvent/EventDetail";
+import EditPage from './components/pages/EditPage/EditForm'
 
 
 
@@ -37,7 +38,7 @@ const AppContent = () => {
               <Header />
               <Routes>
                   <Route path="/" element={<TestHome />} />
-                  <Route path="/event/:_id" element={<EventDetail />} />
+                  <Route path="/event/:_id" element={<EditPage />} />
               </Routes>
           </Router>
 
@@ -49,7 +50,7 @@ const AppContent = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-          <Route path="/event/:_id" component={EventDetail} />
+          <Route path="/event/:_id" component={EditPage} />
       </Routes>
     </Router>
   );
