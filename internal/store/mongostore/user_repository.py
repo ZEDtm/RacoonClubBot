@@ -1,6 +1,8 @@
 from pymongo import MongoClient
+from bson import ObjectId
 
-from models.user import User
+from models.user import User, UserSchema
+
 
 
 class UserRepository:
@@ -27,3 +29,15 @@ class UserRepository:
     def _document_to_user(self, document):
         # Метод для преобразования сырых данных из MongoDB в экземпляр класса User
         return User(**document)
+    
+    def save_user(self, user: User):
+        user_dict = UserSchema().dump(user)
+        user_dict['_id'] = ObjectId(user_dict['_id']) if user_dict['_id'] else ObjectId()
+        self.collection.insert_one(user_dict)
+
+    # Пример загрузки пользователя из MongoDB
+    def load_user(self, user_id: str) -> User:
+        user_data = self.collection.find_one({'_id': ObjectId(user_id)})
+        if user_data:
+            return UserSchema().load(user_data)
+        return None

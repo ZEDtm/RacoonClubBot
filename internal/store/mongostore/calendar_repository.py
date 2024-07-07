@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from datetime import datetime, timedelta
 from typing import Union, List
-from models.calendar import Event, Archive, Product
+from internal.models.event import Event, Archive, Product
 
 
 class EventRepository:
