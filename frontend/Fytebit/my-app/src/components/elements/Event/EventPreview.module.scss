@@ -15,15 +15,11 @@
 }
 
 .container1 {
-  @apply flex items-start pr-2 pl-2;
+  @apply p-4 flex justify-between;
 }
 
 .container2 {
-  @apply flex-grow;
-}
-
-.container3 {
-  @apply flex space-x-4;
+  @apply p-4 flex justify-end;
 }
 
 .svgTextContainer {
@@ -34,14 +30,6 @@
   @apply flex-none text-sm text-[--color-heading];
 }
 
-.svgIcon {
-  @apply w-4 h-4;
-}
-
 .description {
   @apply p-4 text-wrap md:text-balance h-1/4
-}
-
-.author {
-  @apply p-4 text-right h-1/4
 }

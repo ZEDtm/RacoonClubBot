@@ -3,10 +3,10 @@ import { useSpring, animated } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 import { useNavigate } from 'react-router-dom';
 
-
 import styles from './EventPreview.module.scss'
 import './EventPrev.css';
 import Icon from "../../ui/Icons/Icons";
+
 
 export default function EventPrev({ event }) {
   const [isSwipedLeft, setIsSwipedLeft] = useState(false);
@@ -37,7 +37,6 @@ export default function EventPrev({ event }) {
     axis: 'x',
     from: () => [x.get()],
   });
-  // crete
 
   const handleClick = (event_id) => {
     setIsSwipedLeft(false);
@@ -53,37 +52,39 @@ export default function EventPrev({ event }) {
         <div
             className={`shadow-xl event-prev-card ${isSwipedLeft ? 'swiped left' : isSwipedRight ? 'swiped right' : ''}`}
             onDoubleClick={() => handleClick(event._id)}>
+
           <div>
             <div className={styles.name}>{event.name}</div>
             <img className={styles.image} src={event.img} alt="Event Image"/>
           </div>
 
-          <div className="p-4 flex justify-between">
-
+          <div className={styles.container1}>
             <div className={styles.svgTextContainer}>
               <Icon type="calendar" width="1rem" height="1rem"/>
               <div className={styles.text}>{event.date}</div>
             </div>
+
             <div className={styles.svgTextContainer}>
               <Icon type="clock" width="1rem" height="1rem"/>
               <div className={styles.text}>{event.time}</div>
             </div>
+
             <div className={styles.svgTextContainer}>
               <Icon type="duration" width="1rem" height="1rem"/>
               <div className={styles.text}>{event.duration}</div>
             </div>
-
         </div>
+
         <div className={styles.description}>{event.description}</div>
-          <div className="p-4 flex justify-end">
+
+          <div className={styles.container2}>
             <div className={styles.svgTextContainer}>
               <Icon type="person" width="1rem" height="1rem"/>
               <div className={styles.text}>{event.editor}</div>
             </div>
           </div>
+
         </div>
-
-
       </animated.div>
       {/*<div className="absolute flex inset-0 z-[-1] event-prev-card">*/}
       {/*  <div className="w-1/2 bg-red-700">*/}
