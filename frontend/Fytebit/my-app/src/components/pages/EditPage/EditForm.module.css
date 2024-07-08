@@ -1,0 +1,144 @@
+p{
+    margin: 0 0;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input, textarea{
+    color: white;
+    background-color: #414547;
+}
+
+
+
+.editForm{
+
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: rgba(66, 70, 72, 30%);
+    padding: 15px;
+    border-radius: 30px 5px 30px 5px;
+    overflow: hidden;
+    
+    
+}
+
+.photo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.img{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
+.datetimeInputs{
+    display: flex;
+    gap: 0 10px;
+    color: white;
+    justify-content: space-between;
+}
+
+.eventDatetime{
+    display: flex;
+    flex-direction: column;
+    gap: 15px 0;
+    margin-bottom: 20px;
+}
+
+
+.eventStart{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.eventEnd{
+
+}
+
+.eventName{
+    margin-bottom: 20px;
+}
+
+.eventDescription{
+    margin-bottom: 20px;
+}
+
+.eventDescriptionArea{
+    resize: vertical;
+    max-height: 300px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.eventLink{
+    margin-bottom: 20px;
+}
+
+.services{
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.serviceItem{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    gap: 0px 10px;
+}
+
+.addServiceButton{
+    border: none;
+    padding: 5px;
+    background-color: #50C0FF;
+    border-radius: 10px;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0 10px;
+    justify-content: space-between;
+}
+
+.price{
+
+}
+
+.author{
+
+}
+
+.buttons{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.buttonSubmit{
+    background-color: #50C0FF;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.buttonReset{
+    color: #FD0050;
+    background-color: inherit;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+

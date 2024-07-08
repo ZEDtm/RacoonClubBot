@@ -1,0 +1,17 @@
+.fileInputContainer{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #428645;
+}
+
+
+
+.fileInput{
+    
+    display: flex;
+    flex-direction: column;
+    
+    overflow: hidden;
+}
