@@ -1,16 +1,16 @@
 .block {
-  @apply relative pt-4 m-4;
+  @apply relative pt-4 m-4
 }
 
-.textContainer {
+.textContainer{
   @apply flex-grow ml-2 pl-2 pr-2;
 }
 
-.name {
+.name{
   @apply text-center text-xl font-bold text-[--color-heading];
 }
 
-.image {
+.image{
   @apply m-0 p-2 w-max h-2/3 rounded-tl-3xl rounded-br-3xl;
 }
 
@@ -31,7 +31,5 @@
 }
 
 .description {
-  @apply p-4 text-wrap md:text-balance h-1/4;
+  @apply p-4 text-wrap md:text-balance h-1/4
 }
-
-/*# sourceMappingURL=EventPreview.module.css.map */

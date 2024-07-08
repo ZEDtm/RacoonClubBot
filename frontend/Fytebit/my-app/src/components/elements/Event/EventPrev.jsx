@@ -3,7 +3,7 @@ import { useSpring, animated } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './EventPreview.module.scss'
+import styles from './EventPreview.module.css'
 import './EventPrev.css';
 import Icon from "../../ui/Icons/Icons";
 
