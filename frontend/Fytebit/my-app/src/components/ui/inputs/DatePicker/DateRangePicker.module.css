@@ -1,0 +1,41 @@
+.dateStartInputLabel{
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.dateEndInputLabel{
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.datePickerContainer{
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    background-color: var(--custom-input-back);
+}
+
+.inputIconContainer{
+    padding-left: 0.5rem;
+}
+
+.inputField {
+    width: 80%;
+    text-align: center;
+    flex: 1;
+    border: 0;
+    background-color: transparent;
+    padding: 0.375rem 0.25rem;
+    font-size: 1rem;
+    outline: none;
+    color: var(--color-text);
+}
+

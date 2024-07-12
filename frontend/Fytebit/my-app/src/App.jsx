@@ -9,7 +9,6 @@ import Header from './components/elements/Header/Header';
 import Home from './views/Events/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import TestHome from './views/Events/TestHome'
-import EditForm from "./views/EditPage/EditForm";
 import EventDetail from "./views/EditEvent/EventDetail";
 
 

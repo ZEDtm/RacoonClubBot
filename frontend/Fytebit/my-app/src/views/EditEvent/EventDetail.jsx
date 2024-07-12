@@ -117,7 +117,8 @@ function EventDetail() {
                     <div className={styles.eventNameContainer}>
                         <div>
                             <label htmlFor="username" className={styles.eventInputLabel}>
-                                Название мероприятия</label>
+                                Название мероприятия
+                            </label>
                             <div className={styles.eventInputAreaContainer}>
                                 <div className={styles.eventInputAreaContainerArea}>
                                     <input type="text" name="evemtName" id="evemtName" autoComplete="evemtName"
@@ -146,12 +147,14 @@ function EventDetail() {
                     <div className={styles.eventLinkContainer}>
                         <div>
                             <label htmlFor="eventLink" className={styles.eventInputLabel}>
-                                Ссылка</label>
+                                Ссылка
+                            </label>
                             <div className={styles.eventInputAreaContainer}>
                                 <div
                                     className={styles.eventInputAreaContainerArea}>
                                     <span className={styles.eventInputAreaSpan}>
-                                        https://</span>
+                                        https://
+                                    </span>
                                     <input type="text" name="eventLink" id="eventLink" autoComplete="eventLink"
                                            className={styles.inputField}
                                            placeholder=""/>
@@ -175,7 +178,7 @@ function EventDetail() {
                                     <div className={styles.eventInputAreaContainerArea}>
                                         <span className={styles.eventInputAreaSpan}>₽</span>
                                         <input type="text" name="eventPrice" id="eventPrice" autoComplete="eventPrice"
-                                               className={styles.inputField}
+                                               className={styles.inputPriceField}
                                                placeholder="0.00"/>
 
                                     </div>
