@@ -11,6 +11,8 @@
   --custom-back-black: #151B1E;
   --custom-div-back-black: #1F2426;
 
+  --custom-input-back: #414547;
+
   --vt-c-indigo: #2c3e50;
 
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
@@ -22,6 +24,8 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --custom-buttons-back-blue: #50C0FF;
+  --custom-buttons-color-red: #FD0050;
 }
 
 /* semantic color variables for this project */
@@ -35,13 +39,14 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text-invers: var(--vt-c-text-dark-2);
 
   --color-stroke: var(--vt-c-black);
 
   --section-gap: 160px;
 
   --custom-div-back: var(--vt-c-white-soft);
-  --custom-input-back: var(--vt-c-text-dark-2)
+  --custom-input-back: #E5E7EBFF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,11 +60,12 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+    --color-text-invers: var(--vt-c-text-light-1);
 
     --color-stroke: var(--vt-c-text-dark-1);
 
     --custom-div-back: var(--custom-div-back-black);
-    --custom-input-back: var(--vt-c-divider-dark-1)
+    --custom-input-back: var(--vt-c-divider-dark-1);
   }
 }
 
@@ -96,4 +102,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }

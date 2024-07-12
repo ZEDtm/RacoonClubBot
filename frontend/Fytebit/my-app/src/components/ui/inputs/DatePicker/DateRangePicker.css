@@ -2,40 +2,55 @@
 .react-datepicker__input-container{
     display: flex;
     justify-content: center;
+
+}
+
+.react-datepicker__month-container{
+    background-color: var(--color-background);
+    border-radius: 5px;
 }
 
 .react-datepicker {
+    left: 27%;
     font-family: 'Arial', sans-serif;
-    border: 2px solid #ccc;
+    font-size: 0.875rem/* 14px */;
+    line-height: 1.25rem/* 20px */;
     border-radius: 8px;
+    border-color: var(--color-background);;
 }
 
 .react-datepicker__header {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
+    background-color: var(--custom-div-back);
+    border-bottom: 1px solid var(--custom-input-back);
+}
+
+.react-datepicker__month {
+    background-color: var(--custom-div-back);
+
 }
 
 .react-datepicker__current-month,
 .react-datepicker__day-name {
-    color: #333;
+    color: var(--color-heading)
 }
 
 .react-datepicker__day {
-    color: #333;
+    color: var(--color-heading);
+}
+
+.rea
+
+.react-datepicker__day {
+    color: var(--color-heading);
 }
 
 .react-datepicker__day--selected,
-.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--selecting-range,
 .react-datepicker__day--in-range {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--custom-buttons-back-blue);
+    color: black;
 }
 
-.react-datepicker__day--selected:hover,
-.react-datepicker__day--in-selecting-range:hover,
-.react-datepicker__day--in-range:hover {
-    background-color: #0056b3;
-}
 
 .react-datepicker__time-container {
     border-left: 1px solid #ccc;
@@ -43,9 +58,16 @@
 
 .react-datepicker__time-box {
     width: 100px;
+    background-color: var(--custom-div-back);
 }
 
-.react-datepicker__time-list-item--selected {
-    background-color: #007bff !important;
-    color: #fff !important;
+.react-datepicker-time__header{
+    color: var(--color-heading);
+}
+.react-datepicker__time-list-item {
+    color: var(--color-text);
+}
+
+.react-datepicker__time-list-item:hover {
+    background-color: var(--custom-buttons-back-blue);
 }

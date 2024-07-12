@@ -1,9 +1,9 @@
 import React from "react"
 import classes from "./EditForm.module.css"
-import DateInput from "../../ui/inputs/DateInput/DateInput"
-import TimeInput from "../../ui/inputs/TimeInput/TimeInput"
-import FileInput from "../../ui/inputs/FileInput/FileInput"
-import ServiceInput from "../../ui/inputs/ServiceInput/ServiceInput"
+import DateInput from "../../components/ui/inputs/DateInput/DateInput"
+import TimeInput from "../../components/ui/inputs/TimeInput/TimeInput"
+import FileInput from "../../components/ui/inputs/FileInput/FileInput"
+import ServiceInput from "../../components/ui/inputs/ServiceInput/ServiceInput"
 
 
 function EditForm(props) {

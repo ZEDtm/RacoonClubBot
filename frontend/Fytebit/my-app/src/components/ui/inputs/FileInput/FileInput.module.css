@@ -1,17 +1,16 @@
-.fileInputContainer{
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+.fileInputContainer {
+    position: absolute;
     background-color: #428645;
+
+    height: 100%;
 }
 
-
-
-.fileInput{
-    
-    display: flex;
-    flex-direction: column;
-    
-    overflow: hidden;
+.fileInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5rem;
+    height: 4rem;
+    opacity: 0;
+    cursor: pointer; /* Для улучшения UX */
 }

@@ -1,17 +1,25 @@
-import React from "react"
-import classes from "./FileInput.module.css"
+import React, { useState } from "react";
+import classes from "./FileInput.module.css";
 
-function FileInput(file, setFile) {
-    // const [file, setFile] = React.useState(null)
-    return(
+function FileInput({ onFileChange }) {
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        setFile(selectedFile);
+        onFileChange(selectedFile);
+    };
+
+    return (
         <div className={classes.fileInputContainer}>
-            <input 
-            className={classes.fileInput}
-            type="file" 
-            onInput={event => setFile(event.target.file)} 
-            file={file}/>
+            <input
+                className={classes.fileInput}
+                type="file"
+                onChange={handleFileChange}
+                accept="image/*"
+            />
         </div>
-    )
+    );
 }
 
-export default FileInput
+export default FileInput;

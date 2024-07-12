@@ -7,7 +7,7 @@
 }
 
 .name{
-  @apply text-center text-xl font-bold text-[--color-heading];
+  @apply m-2 text-center text-xl font-bold text-[--color-heading];
 }
 
 .image{

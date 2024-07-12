@@ -15,9 +15,9 @@ const DateRangePicker = ({
 }) => {
     return (
         <div>
-            <label htmlFor="username" className="block text-sm font-medium leading-6 ">Начало мероприятия</label>
+            <label htmlFor="username" className="mb-2 block text-base font-medium leading-6 ">Начало мероприятия</label>
             <div
-                className="flex justify-center rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                className="flex justify-center text-base font-medium leading-6 bg-[var(--custom-input-back)]">
                 <DatePicker
                     selected={startDate}
                     onChange={onStartDateChange}
@@ -25,8 +25,8 @@ const DateRangePicker = ({
                     startDate={startDate}
                     endDate={endDate}
                     dateFormat="Дата:  dd.MM.yyyy"
-                    customInput={<input type="text"
-                                        className="w-4/5 text-center box-border focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
+                    customInput={<input
+                                        className="w-4/5 text-center box-border focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--color-text)] sleading-6 focus:outline-none text-base"
                                         placeholder="Select start date"/>}
                 />
                 <DatePicker
@@ -38,15 +38,15 @@ const DateRangePicker = ({
                     timeCaption="Time"
                     timeFormat="HH:mm"
                     dateFormat="Время:  HH:mm"
-                    customInput={<input type="text"
-                                        className="w-4/5 text-center box-border focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
+                    customInput={<input type="readonly"
+                                        className="w-4/5 text-center box-border focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--color-text)]  leading-6 focus:outline-none text-base"
                                         placeholder="Select start date"/>}
 
                 />
             </div>
-            <label htmlFor="username" className="block text-sm font-medium leading-6 ">Конец мероприятия</label>
+            <label htmlFor="username" className="mb-2 block pt-2 text-base font-medium leading-6 ">Конец мероприятия</label>
             <div
-                className="flex justify-center rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                className="flex justify-center  text-base font-medium leading-6 bg-[var(--custom-input-back)]">
 
                 <DatePicker
                     selected={endDate}
@@ -57,7 +57,7 @@ const DateRangePicker = ({
                     minDate={startDate}
                     dateFormat="Дата:  dd.MM.yyyy"
                     customInput={<input type="text"
-                                        className="w-4/5 text-center box-border focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
+                                        className="w-4/5 text-center box-border focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--color-text)] leading-6 focus:outline-none text-base"
                                         placeholder="Select start date"/>}
 
                 />
@@ -71,7 +71,7 @@ const DateRangePicker = ({
                     timeFormat="HH:mm"
                     dateFormat="Время:  HH:mm"
                     customInput={<input type="text"
-                                        className="w-1/2 text-center focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
+                                        className="w-1/2 text-center focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--color-text)] leading-6 focus:outline-none text-base"
                                         placeholder="Select start date"/>}
                 />
             </div>

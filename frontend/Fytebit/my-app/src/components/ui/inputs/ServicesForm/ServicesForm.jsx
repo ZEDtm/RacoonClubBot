@@ -22,32 +22,38 @@ const ServiceForm = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
             {services.map((service, index) => (
-                <div key={index} className="sm:col-span-6 mt-4">
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <div key={index} className="sm:col-span-6 mt-2">
+                    <div className="flex text-sm font-medium leading-6 bg-[var(--custom-input-back)]">
                         <input
                             type="text"
                             placeholder="Название услуги"
                             value={service.name}
                             onChange={(e) => handleServiceChange(index, 'name', e.target.value)}
-                            className="w-2/5 focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
+                            className="w-2/3 focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
                         />
-                        <input
-                            type="text"
-                            placeholder="Цена"
-                            value={service.price}
-                            onChange={(e) => handleServiceChange(index, 'price', e.target.value)}
-                            className="w-2/5 focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
-                        />
+                        <div
+                            className="flex w-1/3">
+                            <span className="flex select-none items-center pl-3 sm:text-sm">₽</span>
+                            <input
+                                type="text"
+                                placeholder="0.00"
+                                value={service.price}
+                                onChange={(e) => handleServiceChange(index, 'price', e.target.value)}
+                                className="focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
+                            />
+                        </div>
+
                     </div>
                 </div>
             ))}
-            <button type="button" onClick={addService} className="mt-4">
-                Добавить услугу
-            </button>
-            <button type="submit" className="mt-4">Отправить</button>
-        </form>
+            <div className="flex justify-center text-sm">
+                <button type="button" onClick={addService} className="mt-2">
+                    + Добавить услугу
+                </button>
+            </div>
+        </>
     );
 };
 
