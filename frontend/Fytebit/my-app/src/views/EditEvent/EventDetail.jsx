@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './EventDetail.css'
+import styles from './EventDetail.module.css'
 import { getEventById } from '../../api/Client';
 import DateRangePicker from '../../components/ui/inputs/DatePicker/DateRangePicker'
 import ServiceForm from '../../components/ui/inputs/ServicesForm/ServicesForm';
+import FileInput from "../../components/ui/inputs/FileInput/FileInput";
+import Icons from "../../components/ui/Icons/Icons";
 
 function EventDetail() {
     const { _id } = useParams();
@@ -14,6 +16,18 @@ function EventDetail() {
     const [endDate, setEndDate] = useState(new Date());
     const [startTime, setStartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date());
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const [images, setImages] = useState([
+        {src: "/image_1.jpg", id: 1},
+        {src: "/image_2.jpg", id: 2},
+        {src: "/image_4.jpg", id: 3},
+        {src: "/image_5.jpg", id: 4},
+        {src: "/image_6.jpg", id: 5}
+    ]);
+
+
 
     const [services, setServices] = useState([]);
 
@@ -46,136 +60,139 @@ function EventDetail() {
         console.log('End Time:', endTime);
     };
 
+    // Обработкич FileInput
+    const handleFileChange = (file) => {
+        const newImage = {
+            src: URL.createObjectURL(file),
+            id: images.length + 1
+        };
+        setImages([newImage, ...images]);
+    };
+
+
+
     return (
-        <div className="event-detail-card">
-            <label htmlFor="cover-photo" className="block text-sm font-medium leading-6">
-                Cover photo
-            </label>
-            <div className="col-span-full flex justify-center">
-                <div className="flex justify-center px-0 py-1"><img className="event-detail-card img" src="/logo192.png" alt="asdasd"/></div>
+        <div>
+            <div className={styles.eventTitle}>МЕРОПРИЯТИЕ</div>
+            <div className={styles.eventId}>{event._id}</div>
 
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-green-700 px-6 py-10">
+            <div className={styles.mainContainer}>
+                <div className={styles.eventName}>{event.name}</div>
 
-                    <div className="text-center">
-
-                        <div className="mt-4 flex justify-center text-sm leading-6 text-gray-600">
-                            <label
-                                htmlFor="file-upload"
-                                className="p-1 relative cursor-pointer rounded-sm bg-green-600 font-semibold text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                            >
-                                <span>Загрузить фото</span>
-                                <input id="file-upload" name="file-upload" type="file" className="sr-only"/>
-                            </label>
-
-                        </div>
-                        <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                <div>
+                    <div className={styles.imageContainer}>
+                        <img className={styles.eventImage} src="/image_3.jpg" alt="Event Image"/>
                     </div>
-                </div>
-            </div>
 
-            <div>
-                <DateRangePicker
-                    startDate={startDate}
-                    endDate={endDate}
-                    startTime={startTime}
-                    endTime={endTime}
-                    onStartDateChange={setStartDate}
-                    onEndDateChange={setEndDate}
-                    onStartTimeChange={setStartTime}
-                    onEndTimeChange={setEndTime}
-                />
-                <button onClick={handleSubmit}>Submit</button>
-            </div>
-
-            <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-4">
-                    <label htmlFor="username" className="block text-sm font-medium leading-6 ">Название
-                        мероприятия</label>
-                    <div className="mt-2">
-                        <div
-                            className="flex r sm:max-w-md form-input">
-                            <span className="flex select-none items-center pl-3 sm:text-sm">@</span>
-                            <input type="text" name="username" id="username" autoComplete="username"
-                                   className="focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
-                                   placeholder="janesmith"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="mt-4 col-span-full">
-                <label htmlFor="about" className="block text-sm font-medium leading-6 ">
-                    Описание мероприятия
-                </label>
-                <div className="mt-2">
-                <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
-                    className="p-1 block w-full focus:outline-none sm:text-sm sm:leading-6 text-base form-input"
-                    defaultValue={''}
-                />
-                </div>
-                <p className="mt-3 text-sm leading-6">Write a few sentences about yourself.</p>
-            </div>
-
-            <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-4">
-                    <label htmlFor="username" className="block text-sm font-medium leading-6 ">Ссылка</label>
-                    <div className="mt-2">
-                        <div
-                            className="flex form-input">
-                            <span className="flex select-none items-center pl-3 sm:text-sm">@</span>
-                            <input type="text" name="username" id="username" autoComplete="username"
-                                   className="focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
-                                   placeholder="janesmith"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <label htmlFor="username" className="block text-sm font-medium leading-6 ">Услуги</label>
-            <ServiceForm onSubmit={handleServiceSubmit}/>
-
-            <div className="flex justify-between">
-                <div className="w-2/5 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="sm:col-span-4">
-                        <label htmlFor="username" className="block text-sm font-medium leading-6 ">Цена</label>
-                        <div className="mt-2">
-                            <div
-                                className="flex form-input">
-                                <span className="flex select-none items-center pl-3 sm:text-sm">@</span>
-                                <input type="text" name="username" id="username" autoComplete="username"
-                                       className="focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
-                                       placeholder="janesmith"/>
+                    <div className={styles.scrollableImages}>
+                        <div className={styles.imgInputContainer}>
+                            <div className={styles.imgInputContainerDiv}>
+                                <FileInput onFileChange={handleFileChange}/>
+                                <div className={styles.imgInputContainerDivIcon}>
+                                    <Icons type="imageInput" width="30px" height="30px" color="var(--color-heading)" className={styles.imgInputIcon} />
+                                </div>
 
                             </div>
                         </div>
+                        {images.map(image => (
+                            <img className={styles.imageItem} src={image.src} alt="Event Images" key={image.id}/>
+                        ))}
                     </div>
                 </div>
 
-                <div className="w-2/5 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="sm:col-span-4">
-                        <label htmlFor="username" className="block text-sm font-medium leading-6 ">Автор</label>
-                        <div className="mt-2">
-                            <div
-                                className="flex form-input">
-                                <span className="flex select-none items-center pl-3 sm:text-sm">@</span>
-                                <input type="text" name="username" id="username" autoComplete="username"
-                                       className="focus:ring-0 block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none text-base"
-                                       placeholder="janesmith" disabled={true}/>
+                <div className={styles.detailMainContainer}>
+                    <div>
+                        <DateRangePicker
+                            startDate={startDate}
+                            endDate={endDate}
+                            startTime={startTime}
+                            endTime={endTime}
+                            onStartDateChange={setStartDate}
+                            onEndDateChange={setEndDate}
+                            onStartTimeChange={setStartTime}
+                            onEndTimeChange={setEndTime}
+                        />
+                    </div>
 
+                    <div className={styles.eventNameContainer}>
+                        <div>
+                            <label htmlFor="username" className={styles.eventInputLabel}>
+                                Название мероприятия</label>
+                            <div className={styles.eventInputAreaContainer}>
+                                <div className={styles.eventInputAreaContainerArea}>
+                                    <input type="text" name="evemtName" id="evemtName" autoComplete="evemtName"
+                                           className={styles.inputField}
+                                           placeholder=""/>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div className={styles.eventDescriptionContainer}>
+                        <label htmlFor="about" className={styles.eventInputLabel}>
+                            Описание мероприятия
+                        </label>
+                        <div className={styles.eventInputAreaContainer}>
+                    <textarea
+                        id="eventDescription"
+                        name="eventDescription"
+                        rows={3}
+                        className={styles.inputFieldDescription}
+                        defaultValue={''}
+                    />
+                        </div>
+                    </div>
+
+                    <div className={styles.eventLinkContainer}>
+                        <div>
+                            <label htmlFor="eventLink" className={styles.eventInputLabel}>
+                                Ссылка</label>
+                            <div className={styles.eventInputAreaContainer}>
+                                <div
+                                    className={styles.eventInputAreaContainerArea}>
+                                    <span className={styles.eventInputAreaSpan}>
+                                        https://</span>
+                                    <input type="text" name="eventLink" id="eventLink" autoComplete="eventLink"
+                                           className={styles.inputField}
+                                           placeholder=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.eventServicesContainer}>
+                        <label htmlFor="eventServices" className={styles.eventInputLabel}>Услуги</label>
+                    </div>
+                        <ServiceForm onSubmit={handleServiceSubmit}/>
+
+
+                    <div className="flex">
+                        <div className={styles.eventPriceContainer}>
+                            <div className="">
+                                <label htmlFor="eventPrice" className={styles.eventInputLabel}>Базовая
+                                    стоимость посещения</label>
+                                <div className={styles.eventPriceResizeContainer}>
+                                    <div className={styles.eventInputAreaContainerArea}>
+                                        <span className={styles.eventInputAreaSpan}>₽</span>
+                                        <input type="text" name="eventPrice" id="eventPrice" autoComplete="eventPrice"
+                                               className={styles.inputField}
+                                               placeholder="0.00"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.buttonsContainer}>
+                        <button className={styles.cancelButton} type="reset">Отмена</button>
+                        <button className={styles.applyButton} type="button">Применить</button>
+
+                    </div>
+
                 </div>
-
-
             </div>
-
-
         </div>
-
     );
 }
 
