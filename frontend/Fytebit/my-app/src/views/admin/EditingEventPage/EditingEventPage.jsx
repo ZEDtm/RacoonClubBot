@@ -1,11 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './EditingEventPage.module.css'
+
 import { getEventById } from '../../../api/Client';
+
 import DateRangePicker from './components/DatePicker/DateRangePicker'
 import ServiceForm from './components/ServicesForm/ServicesForm';
-import FileInput from "./components/FileInput/FileInput";
-import Icons from "../../../components/ui/Icons/Icons";
+
 import ImagesScrollBarPicker from "./components/ImagesScrollbarPicker/ImagesScrollbarPicker";
 
 function EditingEventPage() {

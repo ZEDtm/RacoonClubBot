@@ -32,7 +32,22 @@
     padding: 0.5rem;
     border-radius: 1.5rem;
     object-fit: cover;
-    transition: opacity 1s ease-in-out;
+}
+
+.imageItem:hover {
+    animation: zoom 0.5s ease-in-out;
+}
+
+@keyframes zoom {
+    from {
+        scale: 1;
+    }
+    50% {
+        scale: 1.1;
+    }
+    to {
+        scale: 1;
+    }
 }
 
 .imageItemFadeOut {
