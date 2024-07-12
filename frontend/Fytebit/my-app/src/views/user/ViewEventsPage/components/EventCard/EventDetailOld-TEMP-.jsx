@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../../../views/EditEvent/EventDetail.module.css'
-import { getEventById } from '../../../api/Client';
-import DateRangePicker from '../../ui/inputs/DatePicker/DateRangePicker'
-import ServiceForm from '../../ui/inputs/ServicesForm/ServicesForm';
+import '../../../../admin/EditingEventPage/EditingEventPage.module.css'
+import { getEventById } from '../../../../../api/Client';
+import DateRangePicker from '../../../../admin/EditingEventPage/components/DatePicker/DateRangePicker'
+import ServiceForm from '../../../../admin/EditingEventPage/components/ServicesForm/ServicesForm';
 
 function EventDetail() {
     const { _id } = useParams();

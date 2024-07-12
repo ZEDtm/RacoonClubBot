@@ -1,37 +1,36 @@
-import React, { useState } from 'react';
-import styles from './ServiceForm.module.css'
+import styles from './ServiceForm.module.css';
 
-const ServiceForm = ({ onSubmit }) => {
-    const [services, setServices] = useState([{ name: '', price: '' }]);
+const ServiceForm = ({ servicesData, setServicesData }) => {
 
     const handleServiceChange = (index, field, value) => {
-        const updatedServices = [...services];
+        const updatedServices = [...servicesData];
         updatedServices[index][field] = value;
-        setServices(updatedServices);
+        setServicesData(updatedServices);
     };
 
     const addService = () => {
-        setServices([...services, { name: '', price: '' }]);
+        setServicesData([...servicesData, { name: '', price: '' }]);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formattedServices = services.map((service, index) => ({
+        const formattedServices = servicesData.map((service, index) => ({
             [`service${index + 1}`]: { name: service.name, price: service.price }
         }));
-        onSubmit(formattedServices);
+        console.log(formattedServices);
     };
 
     return (
-        <>
-            {services.map((service, index) => (
+        <form onSubmit={handleSubmit}>
+            {servicesData.map((service, index) => (
                 <div key={index} className={styles.servicesContainer}>
                     <input
                         type="text"
                         placeholder="Название услуги"
                         value={service.name}
                         onChange={(e) => handleServiceChange(index, 'name', e.target.value)}
-                        className={styles.serviceNameInput}/>
+                        className={styles.serviceNameInput}
+                    />
                     <div className={styles.servicePriceInputContainer}>
                         <span className={styles.servicePriceInputSpan}>₽</span>
                         <input
@@ -39,7 +38,8 @@ const ServiceForm = ({ onSubmit }) => {
                             placeholder="0.00"
                             value={service.price}
                             onChange={(e) => handleServiceChange(index, 'price', e.target.value)}
-                            className={styles.servicePriceInput} />
+                            className={styles.servicePriceInput}
+                        />
                     </div>
                 </div>
             ))}
@@ -48,7 +48,7 @@ const ServiceForm = ({ onSubmit }) => {
                     + Добавить услугу
                 </button>
             </div>
-        </>
+        </form>
     );
 };
 

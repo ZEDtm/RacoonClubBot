@@ -1,48 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './EventDetail.module.css'
-import { getEventById } from '../../api/Client';
-import DateRangePicker from '../../components/ui/inputs/DatePicker/DateRangePicker'
-import ServiceForm from '../../components/ui/inputs/ServicesForm/ServicesForm';
-import FileInput from "../../components/ui/inputs/FileInput/FileInput";
-import Icons from "../../components/ui/Icons/Icons";
+import styles from './EditingEventPage.module.css'
+import { getEventById } from '../../../api/Client';
+import DateRangePicker from './components/DatePicker/DateRangePicker'
+import ServiceForm from './components/ServicesForm/ServicesForm';
+import FileInput from "./components/FileInput/FileInput";
+import Icons from "../../../components/ui/Icons/Icons";
+import ImagesScrollBarPicker from "./components/ImagesScrollbarPicker/ImagesScrollbarPicker";
 
-function EventDetail() {
+function EditingEventPage() {
     const { _id } = useParams();
-    // const [event, setEvent] = useState(null);
+    const event = {
+        _id: 'asdasdasdasdasdasdasdaasdasds',
+        name: 'Сочи 2024',
+        description: "Приглашаем вас на яркий и веселый фестиваль в Сочи. Участвуйте в концертах, мастер-классах и других мероприятиях, которые подарят вам множество положительных эмоций.",
+        link: 'google.com',
+        price: 100,
+        date_time: {
+            start: "2024-08-07 10:30",
+            end: "2024-08-08 10:30",
+        },
+        services: [
+            { name: '', price: '' }
+        ],
+        main_image: {src: "/image_4.jpg", id: 10},
+        images: [
+            {src: "/image_1.jpg", id: 1},
+            {src: "/image_2.jpg", id: 2},
+            {src: "/image_4.jpg", id: 3},
+            {src: "/image_5.jpg", id: 4},
+            {src: "/image_6.jpg", id: 5}
+        ],
+        editor: 'Виталий',
+    }
+    const eventNameRef = useRef(null);
+    const eventDescriptionRef = useRef(null);
+    const eventLinkRef = useRef(null);
+    const eventPriceRef = useRef(null);
+
+
+
+    // Обработчик загрузки страницы
     const [loading, setLoading] = useState(false);
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const [startTime, setStartTime] = useState(new Date());
-    const [endTime, setEndTime] = useState(new Date());
+    // DatePicker
+    const [startDate, setStartDate] = useState(new Date(event.date_time.start));
+    const [endDate, setEndDate] = useState(new Date(event.date_time.end));
+    const [startTime, setStartTime] = useState(new Date(event.date_time.start));
+    const [endTime, setEndTime] = useState(new Date(event.date_time.end));
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    // ServicesForm
+    const [servicesData, setServicesData] = useState(event.services? event.services: [{ name: '', price: '' }])
 
-    const [images, setImages] = useState([
-        {src: "/image_1.jpg", id: 1},
-        {src: "/image_2.jpg", id: 2},
-        {src: "/image_4.jpg", id: 3},
-        {src: "/image_5.jpg", id: 4},
-        {src: "/image_6.jpg", id: 5}
-    ]);
+    // Images
+    const [mainImage, setMainImage] = useState(event.main_image);
 
-
-
-    const [services, setServices] = useState([]);
-
-    const handleServiceSubmit = (servicesData) => {
-        setServices(servicesData);
-        console.log(servicesData);
-    };
-
-        const event = {
-        _id: 'asdasdasdasdasdasdasdaasdasds',
-        name: 'Казантип',
-        price: 100,
-        date: "16.06.2024",
-        editor: 'Виталий'
-    }
+    const [images, setImages] = useState(event.images);
 
 
     if (loading) {
@@ -54,19 +67,23 @@ function EventDetail() {
     }
 
     const handleSubmit = () => {
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        console.log('Start Time:', startTime);
-        console.log('End Time:', endTime);
-    };
+        const result = {
+            _id: event._id,
+            name: eventNameRef.current.value,
+            description: eventDescriptionRef.current.value,
+            link: eventLinkRef.current.value,
+            price: eventPriceRef.current.value,
+            date_time: {
+                start: "2024-08-07 10:30",
+                end: "2024-08-08 10:30",
+            },
+            services: servicesData,
+            main_image: mainImage,
+            images: images,
+            editor: 'Виталий',
+        }
+        console.log(result)
 
-    // Обработкич FileInput
-    const handleFileChange = (file) => {
-        const newImage = {
-            src: URL.createObjectURL(file),
-            id: images.length + 1
-        };
-        setImages([newImage, ...images]);
     };
 
 
@@ -79,26 +96,7 @@ function EventDetail() {
             <div className={styles.mainContainer}>
                 <div className={styles.eventName}>{event.name}</div>
 
-                <div>
-                    <div className={styles.imageContainer}>
-                        <img className={styles.eventImage} src="/image_3.jpg" alt="Event Image"/>
-                    </div>
-
-                    <div className={styles.scrollableImages}>
-                        <div className={styles.imgInputContainer}>
-                            <div className={styles.imgInputContainerDiv}>
-                                <FileInput onFileChange={handleFileChange}/>
-                                <div className={styles.imgInputContainerDivIcon}>
-                                    <Icons type="imageInput" width="30px" height="30px" color="var(--color-heading)" className={styles.imgInputIcon} />
-                                </div>
-
-                            </div>
-                        </div>
-                        {images.map(image => (
-                            <img className={styles.imageItem} src={image.src} alt="Event Images" key={image.id}/>
-                        ))}
-                    </div>
-                </div>
+                <ImagesScrollBarPicker mainImage={mainImage} setMainImage={setMainImage} images={images} setImages={setImages}/>
 
                 <div className={styles.detailMainContainer}>
                     <div>
@@ -116,21 +114,23 @@ function EventDetail() {
 
                     <div className={styles.eventNameContainer}>
                         <div>
-                            <label htmlFor="username" className={styles.eventInputLabel}>
+                            <label htmlFor="evemtName" className={styles.eventInputLabel}>
                                 Название мероприятия
                             </label>
                             <div className={styles.eventInputAreaContainer}>
                                 <div className={styles.eventInputAreaContainerArea}>
                                     <input type="text" name="evemtName" id="evemtName" autoComplete="evemtName"
                                            className={styles.inputField}
-                                           placeholder=""/>
+                                           placeholder=""
+                                           defaultValue={event.name}
+                                           ref={eventNameRef}/>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className={styles.eventDescriptionContainer}>
-                        <label htmlFor="about" className={styles.eventInputLabel}>
+                        <label htmlFor="eventDescription" className={styles.eventInputLabel}>
                             Описание мероприятия
                         </label>
                         <div className={styles.eventInputAreaContainer}>
@@ -139,8 +139,8 @@ function EventDetail() {
                         name="eventDescription"
                         rows={3}
                         className={styles.inputFieldDescription}
-                        defaultValue={''}
-                    />
+                        defaultValue={event.description}
+                        ref={eventDescriptionRef}/>
                         </div>
                     </div>
 
@@ -157,7 +157,9 @@ function EventDetail() {
                                     </span>
                                     <input type="text" name="eventLink" id="eventLink" autoComplete="eventLink"
                                            className={styles.inputField}
-                                           placeholder=""/>
+                                           placeholder=""
+                                           defaultValue={event.link}
+                                           ref={eventLinkRef}/>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +168,7 @@ function EventDetail() {
                     <div className={styles.eventServicesContainer}>
                         <label htmlFor="eventServices" className={styles.eventInputLabel}>Услуги</label>
                     </div>
-                        <ServiceForm onSubmit={handleServiceSubmit}/>
+                        <ServiceForm servicesData={servicesData} setServicesData={setServicesData} />
 
 
                     <div className="flex">
@@ -179,7 +181,9 @@ function EventDetail() {
                                         <span className={styles.eventInputAreaSpan}>₽</span>
                                         <input type="text" name="eventPrice" id="eventPrice" autoComplete="eventPrice"
                                                className={styles.inputPriceField}
-                                               placeholder="0.00"/>
+                                               placeholder="0.00"
+                                               defaultValue={event.price}
+                                               ref={eventPriceRef}/>
 
                                     </div>
                                 </div>
@@ -189,7 +193,7 @@ function EventDetail() {
 
                     <div className={styles.buttonsContainer}>
                         <button className={styles.cancelButton} type="reset">Отмена</button>
-                        <button className={styles.applyButton} type="button">Применить</button>
+                        <button className={styles.applyButton} type="button" onClick={handleSubmit}>Применить</button>
 
                     </div>
 
@@ -199,4 +203,4 @@ function EventDetail() {
     );
 }
 
-export default EventDetail;
+export default EditingEventPage;

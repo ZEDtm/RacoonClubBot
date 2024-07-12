@@ -1,0 +1,68 @@
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.eventImage {
+    padding: 0.5rem;
+    border-bottom-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.fadeIn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.scrollableImages {
+    display: flex;
+    overflow-x: scroll;
+}
+
+
+.imageItem {
+    width: 33.33%;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out;
+}
+
+.imageItemFadeOut {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.imgInputContainer {
+    display: flex;
+    width: 33.333333%;
+    padding: 0.5rem
+}
+
+.imgInputContainerDiv {
+    display: flex;
+    background-color: var(--custom-input-back);
+    border-radius: 0.8rem;
+    width: 24rem;
+    height: 100%;
+    position: relative;
+}
+
+.imgInputIcon {
+    position: absolute;
+}
+
+.imgInputContainerDivIcon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}

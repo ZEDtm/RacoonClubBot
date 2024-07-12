@@ -6,10 +6,10 @@ import { ButtonTelegramAuth } from './auth/TelegramAuthSec'
 import Loader from './components/ui/Loader/Loader'
 
 import Header from './components/elements/Header/Header';
-import Home from './views/Events/Home';
+import Home from './views/user/ViewEventsPage/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import TestHome from './views/Events/TestHome'
-import EventDetail from "./views/EditEvent/EventDetail";
+import TestHome from './views/user/ViewEventsPage/ViewEventsPage'
+import EditingEventPage from "./views/admin/EditingEventPage/EditingEventPage";
 
 
 
@@ -18,8 +18,8 @@ export default function App() {
   const token = localStorage.getItem('access_token');
   return (
     <AuthProvider>
-      {!window.Telegram.WebApp.initData ? token ? null : <ButtonTelegramAuth/> : <TelegramAuth/>}
-      <AppContent />
+        <AppContent />
+        {!window.Telegram.WebApp.initData ? token ? null : <ButtonTelegramAuth/> : <TelegramAuth/>}
    </AuthProvider>
   );
 }
@@ -38,7 +38,7 @@ const AppContent = () => {
               <Header />
               <Routes>
                   <Route path="/" element={<TestHome />} />
-                  <Route path="/event/:_id" element={ <EventDetail/>} />
+                  <Route path="/event/:_id" element={ <EditingEventPage/>} />
               </Routes>
           </Router>
 
@@ -50,7 +50,7 @@ const AppContent = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-          <Route path="/event/:_id" component={<EventDetail />} />
+          <Route path="/event/:_id" component={<EditingEventPage />} />
       </Routes>
     </Router>
   );

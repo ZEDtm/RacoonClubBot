@@ -40,7 +40,6 @@ export const ButtonTelegramAuth = () => {
 
     return (
         <div>
-            <h1>Login with Telegram</h1>
             <div id="telegram-widget-container"></div>
         </div>
     );

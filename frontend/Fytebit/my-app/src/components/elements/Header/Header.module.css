@@ -1,0 +1,89 @@
+.header {
+  align-items: center;
+  padding: 0.5rem;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.link {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.hamburger{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.bar {
+  height: 2px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--color-heading);
+  transition: all 0.3s ease-in-out;
+}
+
+.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.toggleMenu {
+  height: 2rem;
+  background-color: transparent;
+  margin-top: 0.5rem; /* Equivalent to mt-2 in Tailwind */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show {
+  animation: toggleMenuAnim 0.3s ease-in-out forwards;
+}
+
+.hide {
+  animation: hideMenuAnim 0.3s ease-in-out forwards;
+}
+
+@keyframes hideMenuAnim {
+  from {
+    height: 2rem;
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes toggleMenuAnim {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 2rem;
+    opacity: 1;
+  }
+}

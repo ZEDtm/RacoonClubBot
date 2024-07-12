@@ -2,8 +2,6 @@
     grid-column: span 6 / span 6;
     margin-top: 0.5rem;
     display: flex;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
     background-color: var(--custom-input-back);
 }
 

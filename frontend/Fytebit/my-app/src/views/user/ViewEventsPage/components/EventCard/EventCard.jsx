@@ -3,12 +3,12 @@ import { useSpring, animated } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './EventPreview.module.css'
-import './EventPrev.css';
-import Icon from "../../ui/Icons/Icons";
+import styles from './EventCard.module.css'
+import './EventCard.css';
+import Icon from "../../../../../components/ui/Icons/Icons";
 
 
-export default function EventPrev({ event }) {
+export default function EventCard({ event }) {
   const [isSwipedLeft, setIsSwipedLeft] = useState(false);
   const [isSwipedRight, setIsSwipedRight] = useState(false);
 

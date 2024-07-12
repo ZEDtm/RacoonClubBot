@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateRangePicker.css';
 import styles from './DateRangePicker.module.css';
-import Icons from "../../Icons/Icons"; // Import your styles
+import Icons from "../../../../../components/ui/Icons/Icons"; // Import your styles
 
 const DateRangePicker = ({
      startDate,
@@ -28,15 +28,16 @@ const DateRangePicker = ({
                     selected={startDate}
                     onChange={onStartDateChange}
                     selectsStart
-                    startDate={startDate}
+                    minDate={new Date()}
                     endDate={endDate}
                     dateFormat="dd.MM.yyyy"
-                    customInput={<input className={styles.inputField}/>}/>
+                    customInput={<input className={styles.inputField} />}/>
                 <div className={styles.inputIconContainer}>
                     <Icons type="clock" width="1.2rem" height="2.2rem" color="var(--color-text)"/>
                 </div>
 
                 <DatePicker
+                    startDate={startDate}
                     selected={startTime}
                     onChange={onStartTimeChange}
                     showTimeSelect

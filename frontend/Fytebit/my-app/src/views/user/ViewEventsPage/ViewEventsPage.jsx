@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import Skeleton from '../../components/ui/Skeletons/Home/HomeSkeleton'
-import EventPrev from '../../components/elements/Event/EventPrev';
+import Skeleton from '../../../components/ui/Skeletons/Home/HomeSkeleton'
+import EventCard from './components/EventCard/EventCard';
 
-import './TestHome.css'
-import Icons from "../../components/ui/Icons/Icons";
+import './ViewEventsPage.css'
+import Icons from "../../../components/ui/Icons/Icons";
 
 export default function Home() {
     const [events, setEvents] = useState([]);
@@ -113,7 +113,7 @@ export default function Home() {
                 </div>
             </div>
             {events.map(event => (
-                <EventPrev event={event} key={event._id}/>
+                <EventCard event={event} key={event._id}/>
             ))}
         </div>
     );

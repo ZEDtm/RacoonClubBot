@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../auth/AuthContext';
-import { getEvents } from '../../api/Client';
+import { useAuth } from '../../../auth/AuthContext';
+import { getEvents } from '../../../api/Client';
 
-import Skeleton from '../../components/ui/Skeletons/Home/HomeSkeleton'
-import EventPrev from '../../components/elements/Event/EventPrev';
+import Skeleton from '../../../components/ui/Skeletons/Home/HomeSkeleton'
+import EventCard from './components/EventCard/EventCard';
 
 export default function Home() {
     const { user } = useAuth();
@@ -81,7 +81,7 @@ export default function Home() {
                 </label>
                 </div>
             {filteredEvents.map(event => (
-                <EventPrev event={event} key={event._id}/>
+                <EventCard event={event} key={event._id}/>
             ))}
         </div>
     );
