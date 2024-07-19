@@ -5,9 +5,10 @@ from typing import List
 
 from fastapi import APIRouter, Request, Depends, File, UploadFile, Query
 from http import HTTPStatus
+
 from internal.dto.events_dto import EventDTO
 from internal.services.events_service import EventsService
-
+from utils.image_manager import ImageUploader
 
 
 class EventsRouters:
@@ -108,17 +109,11 @@ class EventsRouters:
         async def upload_draw_image(
                 draw_id: str,
                 image: UploadFile = File(...),
+                image_uploader: ImageUploader = Depends(self.application.image_manager.image_uploader)
         ):
-            file_extension = image.filename.split('.')[-1]
-            file_name = f"{uuid.uuid4()}.{file_extension}"
-            folder_name = f"static/{draw_id}/"
-            if not os.path.exists(folder_name):
-                os.makedirs(folder_name)
-            file_path = folder_name + file_name
-            with open(file_path, "wb") as buffer:
-                buffer.write(await image.read())
-            image_url = "/" + file_path
-
+            image_url, error = await image_uploader.upload_image(path=self.application.config.DRAWS_PATH, _id=draw_id, image=image)
+            if error:
+                raise HTTPStatus.UNSUPPORTED_MEDIA_TYPE
             return image_url
 
         @self.router.delete("/events/draw/delete/{draw_id}",
@@ -144,7 +139,8 @@ class EventsRouters:
                           )
         async def add_draw_from_event(event_id: str,
                                       events_service: EventsService = Depends(self.application.services.events),
-                                      draws_events_service: EventsService = Depends(self.application.services.draws_events)
+                                      draws_events_service: EventsService = Depends(
+                                          self.application.services.draws_events)
                                       ):
             event, error = await events_service.find_by_id(event_id=event_id)
             if error:
@@ -165,7 +161,8 @@ class EventsRouters:
                           response_model_by_alias=False,
                           )
         async def add_event_from_draw(draw_id: str,
-                                      draws_events_service: EventsService = Depends(self.application.services.draws_events),
+                                      draws_events_service: EventsService = Depends(
+                                          self.application.services.draws_events),
                                       events_service: EventsService = Depends(self.application.services.events)):
             draw, error = await draws_events_service.find_by_id(event_id=draw_id)
             if error:
@@ -252,15 +249,9 @@ class EventsRouters:
         async def upload_event_image(
                 event_id: str,
                 image: UploadFile = File(...),
+                image_uploader: ImageUploader = Depends(self.application.image_manager.image_uploader)
         ):
-            file_extension = image.filename.split('.')[-1]
-            file_name = f"{uuid.uuid4()}.{file_extension}"
-            folder_name = f"static/{event_id}/"
-            if not os.path.exists(folder_name):
-                os.makedirs(folder_name)
-            file_path = folder_name + file_name
-            with open(file_path, "wb") as buffer:
-                buffer.write(await image.read())
-            image_url = "/" + file_path
-
+            image_url, error = await image_uploader.upload_image(path=self.application.config.EVENTS_PATH, _id=event_id, image=image)
+            if error:
+                raise HTTPStatus.UNSUPPORTED_MEDIA_TYPE
             return image_url

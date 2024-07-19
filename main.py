@@ -9,26 +9,31 @@ from fastapi.staticfiles import StaticFiles
 from tqdm import tqdm
 
 from bot import bot_create
-from config import MONGO_CONNECTION, IMAGES_DIR
+from config import Config
 from internal.store.mongostore.store import MongoDB
-from routers import auth, webhook
+from routers import webhook
 from routers.users import UserRouters
 from routers.events import EventsRouters
+from routers.auth import AuthRouters
 from routers.middleware import Middleware
 from internal.services.service import Services
 from logger import Logger
+from utils.image_manager import ImageManager
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 class Application:
     def __init__(self):
         self.app = FastAPI(lifespan=self.lifespan)
-
-        self.connector = MongoDB(connection=MONGO_CONNECTION)
+        self.config = Config(self)
+        self.connector = MongoDB(connection=self.config.MONGO_CONNECTION)
         self.services = None
-
         self.middleware = Middleware(self)
         self.log = Logger()
+        self.image_manager = ImageManager(self)
+
+
 
     @asynccontextmanager
     async def lifespan(self, app: FastAPI):
@@ -49,11 +54,12 @@ class Application:
         )
 
     def add_static_path(self):
-        self.app.mount(f"/static", StaticFiles(directory=IMAGES_DIR), name="static")
+
+        self.app.mount(f"/{self.config.IMAGES_DIR}", StaticFiles(directory=self.config.IMAGES_DIR), name="static")
 
     def include_routes(self):
         self.app.include_router(webhook.router)
-        self.app.include_router(auth.router)
+        self.app.include_router(AuthRouters(self).get_router())
         self.app.include_router(EventsRouters(self).get_router())
         self.app.include_router(UserRouters(self).get_router())
 
@@ -69,6 +75,9 @@ class Application:
         process_time = (time.time() - start_time) * 1000
         self.log.info(f"process create in {process_time:.2f} ms")
         return self.app
+
+
+
 
 
 if __name__ == '__main__':

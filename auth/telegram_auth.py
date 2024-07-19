@@ -6,7 +6,7 @@ import json
 import time
 
 from auth.jwt_auth import create_access_token, get_current_user
-from config import TOKEN
+from bot.config import TOKEN
 
 async def auth_telegram_webApp(request: Request):
     data = await request.json()
