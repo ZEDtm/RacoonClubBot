@@ -1,9 +1,12 @@
-import { useEffect, useRef } from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import { getTokenTG } from '../api/Client';
 import React from "react";
+import BaseUrlContext from "../api/BaseUrlContext";
 
 
 export const ButtonTelegramAuth = () => {
+    const baseUrl = useContext(BaseUrlContext);
+
     const scriptRef = useRef(null);
     useEffect(() => {
         const script = document.createElement('script');
@@ -21,7 +24,7 @@ export const ButtonTelegramAuth = () => {
         }
         scriptRef.current = script;
         window.onTelegramAuth = function (user) {
-            getTokenTG(user)
+            getTokenTG(baseUrl, user)
             .then(data => {
                 if (data.success) {
                     localStorage.setItem('access_token', data.access_token);

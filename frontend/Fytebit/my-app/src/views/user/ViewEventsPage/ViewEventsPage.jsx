@@ -13,7 +13,7 @@ export default function Home() {
     useEffect(() => {
         const _events = [
             {
-                _id: 'asdasdasdas',
+                _id: '66927ed2b80f846fdb2cb718',
                 name: 'Поездка в Крым',
                 img: '/image_1.jpg',
                 time: '10:00',

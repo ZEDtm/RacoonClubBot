@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useAuth } from '../../../auth/AuthContext';
 import { getEvents } from '../../../api/Client';
 
 import Skeleton from '../../../components/ui/Skeletons/Home/HomeSkeleton'
 import EventCard from './components/EventCard/EventCard';
+import BaseUrlContext from "../../../api/BaseUrlContext";
 
 export default function Home() {
+    const baseUrl = useContext(BaseUrlContext);
     const { user } = useAuth();
     const [events, setEvents] = useState([]);
     const [load, setLoad] = useState(true);
@@ -17,7 +19,7 @@ export default function Home() {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            getEvents(token)
+            getEvents(baseUrl, token)
                 .then(data => {
                     if (data.events) {
                         setEvents(data.events);

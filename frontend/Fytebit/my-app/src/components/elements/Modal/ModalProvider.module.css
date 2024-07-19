@@ -1,0 +1,99 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    background: var(--custom-div-back);
+    border-radius: 0.5rem;
+    border-color: #0ca6e1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modalHeaderSuccess{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    height: 1rem;
+    background-color: green;
+    padding: 0.5rem;
+}
+
+.modalHeaderUnSuccess{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    height: 1rem;
+    background-color: crimson;
+    padding: 0.5rem;
+}
+
+.modalHeaderInfo{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    height: 1rem;
+    background-color: goldenrod;
+    padding: 0.5rem;
+}
+
+.modalLabel {
+    padding-top: 0.5rem;
+    color: var(--color-heading);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalInfo {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalIcon{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.modalContent {
+    color: var(--color-text);
+}
+
+.modalButton {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonClose{
+    border: none;
+    background: var(--custom-input-back);;
+    cursor: pointer;
+    padding: 0.2rem;
+    min-width: 50px;
+    color: var(--color-heading);
+    margin: 0.5rem;
+}
+
+.buttonClose:active:hover{
+    background: var(--custom-div-back);
+}

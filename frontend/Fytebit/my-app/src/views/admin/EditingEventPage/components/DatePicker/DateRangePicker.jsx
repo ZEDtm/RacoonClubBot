@@ -3,7 +3,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateRangePicker.css';
 import styles from './DateRangePicker.module.css';
-import Icons from "../../../../../components/ui/Icons/Icons"; // Import your styles
+import Icons from "../../../../../components/ui/Icons/Icons";
+
 
 const DateRangePicker = ({
      startDate,

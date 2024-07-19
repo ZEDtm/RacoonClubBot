@@ -1,9 +1,12 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { checkJWTAuth } from '../api/Client';
+import BaseUrlContext from "../api/BaseUrlContext";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const baseUrl = useContext(BaseUrlContext);
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -11,7 +14,7 @@ export const AuthProvider = ({ children }) => {
         const checkAuth = async () => {
             const token = localStorage.getItem('access_token');
             if (token) {
-                checkJWTAuth(token)
+                checkJWTAuth(baseUrl, token)
                     .then(data => {
                         if (data.authenticated) {
                             setUser(data.user);

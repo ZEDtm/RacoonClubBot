@@ -1,6 +1,13 @@
 import styles from './ServiceForm.module.css';
+import React, {createRef, useEffect} from "react";
 
-const ServiceForm = ({ servicesData, setServicesData }) => {
+const ServiceForm = ({ servicesData, setServicesData, servicesRefs, setServicesRefs }) => {
+
+    useEffect(() => {
+        // Создаем ссылки для каждого элемента в servicesData
+        const refs = servicesData.map(() => createRef());
+        setServicesRefs(refs);
+    }, [servicesData, setServicesRefs]);
 
     const handleServiceChange = (index, field, value) => {
         const updatedServices = [...servicesData];
@@ -9,19 +16,13 @@ const ServiceForm = ({ servicesData, setServicesData }) => {
     };
 
     const addService = () => {
+        const ref = createRef();
         setServicesData([...servicesData, { name: '', price: '' }]);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formattedServices = servicesData.map((service, index) => ({
-            [`service${index + 1}`]: { name: service.name, price: service.price }
-        }));
-        console.log(formattedServices);
+        setServicesRefs([...servicesRefs, ref]);
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
             {servicesData.map((service, index) => (
                 <div key={index} className={styles.servicesContainer}>
                     <input
@@ -34,11 +35,12 @@ const ServiceForm = ({ servicesData, setServicesData }) => {
                     <div className={styles.servicePriceInputContainer}>
                         <span className={styles.servicePriceInputSpan}>₽</span>
                         <input
-                            type="text"
+                            type="number"
                             placeholder="0.00"
                             value={service.price}
                             onChange={(e) => handleServiceChange(index, 'price', e.target.value)}
                             className={styles.servicePriceInput}
+                            ref={servicesRefs[index]}
                         />
                     </div>
                 </div>
@@ -48,7 +50,7 @@ const ServiceForm = ({ servicesData, setServicesData }) => {
                     + Добавить услугу
                 </button>
             </div>
-        </form>
+        </>
     );
 };
 

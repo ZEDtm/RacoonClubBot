@@ -133,3 +133,7 @@
     color: black;
     font-weight: 700;
 }
+
+.applyButton:active {
+    background-color: #0ca6e1;
+}

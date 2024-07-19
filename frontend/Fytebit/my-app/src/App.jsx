@@ -10,6 +10,8 @@ import Home from './views/user/ViewEventsPage/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import TestHome from './views/user/ViewEventsPage/ViewEventsPage'
 import EditingEventPage from "./views/admin/EditingEventPage/EditingEventPage";
+import BaseUrlProvider from "./api/BaseUrlProvider.js";
+import {ModalProvider} from "./components/elements/Modal/ModalProvider";
 
 
 
@@ -17,10 +19,12 @@ import EditingEventPage from "./views/admin/EditingEventPage/EditingEventPage";
 export default function App() {
   const token = localStorage.getItem('access_token');
   return (
-    <AuthProvider>
-        <AppContent />
-        {!window.Telegram.WebApp.initData ? token ? null : <ButtonTelegramAuth/> : <TelegramAuth/>}
-   </AuthProvider>
+      <BaseUrlProvider>
+        <AuthProvider>
+                <AppContent />
+            {!window.Telegram.WebApp.initData ? token ? null : <ButtonTelegramAuth/> : <TelegramAuth/>}
+       </AuthProvider>
+      </BaseUrlProvider>
   );
 }
 
@@ -36,13 +40,15 @@ const AppContent = () => {
       return (
           <Router>
               <Header />
-              <Routes>
-                  <Route path="/" element={<TestHome />} />
-                  <Route path="/event/:_id" element={ <EditingEventPage/>} />
-              </Routes>
+              <ModalProvider>
+                  <Routes>
+                      <Route path="/" element={<TestHome />} />
+                      <Route path="/event/:_id" element={ <EditingEventPage/>} />
+                  </Routes>
+              </ModalProvider>
           </Router>
 
-      );{/** <p>OOOps</p> */}
+      );
   }
 
   return (
