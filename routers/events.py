@@ -6,7 +6,7 @@ from typing import List
 from fastapi import APIRouter, Request, Depends, File, UploadFile, Query
 from http import HTTPStatus
 from internal.dto.events_dto import EventDTO
-from internal.services.events_serviece import EventsService
+from internal.services.events_service import EventsService
 
 
 

@@ -1,6 +1,6 @@
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
-from internal.services.events_serviece import EventsService
+from internal.services.events_service import EventsService
 
 
 class Services:

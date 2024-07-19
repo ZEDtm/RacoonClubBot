@@ -15,7 +15,7 @@ from routers import auth, webhook
 from routers.users import UserRouters
 from routers.events import EventsRouters
 from routers.middleware import Middleware
-from internal.services.all import Services
+from internal.services.service import Services
 from logger import Logger
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
